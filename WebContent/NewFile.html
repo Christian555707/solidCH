@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+
+    if (this.readyState == 4  && this.status == 200) {
+    	var obj = JSON.parse(this.responseText);
+    	var canvas = document.getElementById("CostosHoras");
+    	var ctx = canvas.getContext('2d');
+    	if (window.grafica) {
+    		window.grafica.clear();
+    		window.grafica.destroy();
+    		}
+
+    	var data;
+    	var options;
+
+    	window.grafica = new Chart(ctx, {
+    	  type: 'line',
+    	  data: data,
+    	  options: options
+    	});
+    }
+  };
+  
+  xhttp.open('POST', 'http://localhost:8080/Intento2/CostoHora.jsp', true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("selectVar="+document.getElementById("selectVar").value+
+		  "&selectBar="+document.getElementById("selectBar").value+
+		  "&selectBar2="+document.getElementById("selectBar2").value+
+		  "&MesIni="+document.getElementById("MesIni").value+
+		  "&MesFin="+document.getElementById("MesFin").value); 
+}
+</script>
+
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+	  if (this.readyState == 4  && this.status == 200) {
+		  //Código a ejecutar
+	  }
+  };
+  
+  xhttp.open('POST', 'http://localhost:8080/Intento2/CostoHora.jsp', true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("selectVar="+document.getElementById("selectVar").value+
+		  "&selectBar="+document.getElementById("selectBar").value+
+		  "&selectBar2="+document.getElementById("selectBar2").value+
+		  "&MesIni="+document.getElementById("MesIni").value+
+		  "&MesFin="+document.getElementById("MesFin").value); 
+}
+</script>
+
+
+</body>
+</html>
